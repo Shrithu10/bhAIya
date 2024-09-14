@@ -23,6 +23,25 @@ In the bustling streets of India, shopkeepers, affectionately called "Bhaiya," p
 4. **Enhanced Shopping Experience**:
    - **Informed Decisions**: By providing comprehensive product details, bhAIya helps users make well-informed purchasing decisions.
 
+5. **Products Bundle Generation**:
+   - **Curated Bundles**: bhAIya suggests product bundles based on user preferences, grouping complementary items for convenience.
+   - **Cost-Efficiency**: Bundling helps users save by offering related products at competitive prices.
+
+6. **Personalized Product Generation Based on Prompts**:
+   - **Custom Product Suggestions**: Users provide prompts, and bhAIya generates personalized product recommendations.
+   - **Interactive Shopping Assistant**: The AI adapts to user inputs, delivering tailored results in real-time.
+
+## bhAIya seller dashboard:
+The seller dashboard of bhAIya helps the seller in a lot of methods to cluster the segments of cutomers based on different paramters,helping them in different business development methods.The seller can also use this to keep a track of the products in the website and can add,modify or delete products as well.
+
+**Geo-Location-Based Clustering:** Segment customers based on their location.
+**Purchase Frequency-Based Clustering:** Group customers by how often they make purchases.
+**Behavioral Clustering:** Understand and cluster customers based on their behavior patterns.
+**Discount Sensitivity Clustering:** Identify customers who respond to discounts.
+**Recency-Frequency-Monetary (RFM) Clustering:** Segment customers by recent activity, purchase frequency, and monetary value.
+**Product Interest Clustering:** Classify customers by their interests in specific products.
+**Value-Based Clustering:** Segment customers by the value they bring to the business. 
+
 ## How We Built It
 
 **bhAIya** is written in Python and powered by the mistral:latest, along with assistance from the Llava-phi Vision model. bhAIya takes the shopkeeper's database as input and adapts to the products listed in the shop. It creates a specialized database for each store using insights from the large language model and uses it to fulfill users' queries. It uses **Few Shot learning** to identify categories from the user's prompt and match it with the already generated categories in the database. These categories on both sides are converted into vector embeddings using Word2Vec and are matched together using Cosine similarity. The top n results are returned back.
@@ -31,8 +50,32 @@ In the bustling streets of India, shopkeepers, affectionately called "Bhaiya," p
 ![image](https://github.com/user-attachments/assets/6c1e0b4a-4937-4ef7-800e-e9235317d7a5)
 
 ![image](https://github.com/user-attachments/assets/c2196119-a320-46c8-b24a-9fb4b65035ae)
-## bhAIya seller dashboard:
+
+## Custom product generation
+![image](https://github.com/user-attachments/assets/b66832c8-a134-4dda-ac66-a0e831b1e438)
+
+
+## bhAIya seller dashboard
 ![image](https://github.com/user-attachments/assets/37d818cf-a195-4661-a290-31cf8261ca0b)
+
+## Demo videos:
+
+https://github.com/user-attachments/assets/aab28e87-03be-41e4-832c-71933e0cefc4
+https://github.com/user-attachments/assets/4cf604b4-e7b5-4bac-b3a1-034914f95930
+
+## Custom products bundle recommendation system:
+https://github.com/user-attachments/assets/5b191c79-9b39-4b1a-a00a-79ffa247aadf
+
+## Seller dashboard demo: 
+https://github.com/user-attachments/assets/438693b6-a81c-4b3c-a462-933e56ab8b5f\
+
+## Full video: 
+https://github.com/user-attachments/assets/fb3586df-6ab1-45a1-a9ee-d2b1635f0729
+
+
+
+
+
 
 
 
