@@ -63,13 +63,10 @@ The seller dashboard of bhAIya helps the seller in a lot of methods to cluster t
 ![image](https://github.com/user-attachments/assets/37d818cf-a195-4661-a290-31cf8261ca0b)
 
 ## Demo videos:
-
 https://github.com/user-attachments/assets/aab28e87-03be-41e4-832c-71933e0cefc4
 
-https://github.com/user-attachments/assets/4cf604b4-e7b5-4bac-b3a1-034914f95930
-
 ## Custom products bundle recommendation system:
-https://github.com/user-attachments/assets/5b191c79-9b39-4b1a-a00a-79ffa247aadf
+https://github.com/user-attachments/assets/4cf604b4-e7b5-4bac-b3a1-034914f95930
 
 ## Seller dashboard demo: 
 https://github.com/user-attachments/assets/438693b6-a81c-4b3c-a462-933e56ab8b5f
