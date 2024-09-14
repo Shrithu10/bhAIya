@@ -31,7 +31,7 @@ In the bustling streets of India, shopkeepers, affectionately called "Bhaiya," p
    - **Custom Product Suggestions**: Users provide prompts, and bhAIya generates personalized product recommendations.
    - **Interactive Shopping Assistant**: The AI adapts to user inputs, delivering tailored results in real-time.
 
-7.**Multilingual Approach:**
+7. **Multilingual Approach**:
    - **Support for Multiple Languages**: bhAIya can communicate with users in different languages, ensuring accessibility for diverse audiences.
    - **Seamless Translations**: Users can interact in their preferred language, and bhAIya will provide answers and recommendations accordingly.
 
