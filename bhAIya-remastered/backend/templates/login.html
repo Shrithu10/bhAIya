@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+
+</head>
+<body>
+    <div class="full-screen">
+        <div class="logo-container">
+            <div class="logo-text-top-left">bhAIya</div> <!-- Added div -->
+            <div class="logo-text-container">
+                <div class="logo-text">call me...</div>
+                <div class="scrolling-text-container">
+                    <div class="scrolling-text">bhAIya </div>
+                    <div class="scrolling-text">भाईया </div>
+                    <div class="scrolling-text">ভাইয়া </div>
+                    <div class="scrolling-text">ભાઈયા </div>
+                    <div class="scrolling-text">ಭಾಯಿ </div>
+                    <div class="scrolling-text">भाई </div>
+                    <div class="scrolling-text">ଭାଇଯା </div>
+                    <div class="scrolling-text">ਭਾਈਆ </div>
+                    <div class="scrolling-text">பாய் </div>
+                    <div class="scrolling-text">ഭായി </div>
+                    <div class="scrolling-text">भाईया </div>
+                    <div class="scrolling-text">భాయ్ </div>
+                    <div class="scrolling-text">ভাইয়া </div>
+                    <div class="scrolling-text">ഭായ് </div>
+                    <div class="scrolling-text">bhAIya </div>
+
+                    
+                </div>
+            </div>
+            <div class="arrow">&#9660;</div>
+        </div>
+    </div>
+    <div class="content-container">
+        <div class="login-container">
+            
+            <div class="toggle">
+                <button class="toggle-button active" data-role="user">User Login</button>
+                <button class="toggle-button" data-role="admin">Admin Login</button>
+            </div>
+            <form class="login-form" action="{{ url_for('handle_login') }}" method="post">
+                <div class="input-group">
+                    <input type="text" class="input-bubble" name="username" placeholder="Username" required>
+                    <span class="check-mark">✔</span>
+                </div>
+                <div class="input-group">
+                    <input type="email" class="input-bubble" name="email" placeholder="Email" required>
+                    <span class="check-mark">✔</span>
+                </div>
+                <div class="input-group">
+                    <input type="password" class="input-bubble" name="password" placeholder="Password" required>
+                    <span class="check-mark">✔</span>
+                </div>
+                <input type="hidden" name="user_type" value="user">
+                <button type="submit" class="login-button">Login</button>
+            </form>
+        </div>
+        <div class="login-box">
+            <a href="#" class="social-button" id="facebook-connect"> <span>Connect with Facebook</span></a>
+            <a href="#" class="social-button" id="google-connect"> <span>Connect with Google</span></a>
+            <a href="#" class="social-button" id="twitter-connect"> <span>Connect with Twitter</span></a>
+            <a href="#" class="social-button" id="linkedin-connect"> <span>Connect with LinkedIn</span></a>
+        </div>
+    </div>
+    
+    <script type="module" src="{{ url_for('static', filename='js/login.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/firebase-auth.js') }}"></script>
+</body>
+</html>

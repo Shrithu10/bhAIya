@@ -1,0 +1,344 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+    height: 100%;
+    color: #333;
+}
+
+.full-screen {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #000;
+    position: relative;
+}
+
+.logo-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.logo-text {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #fff;
+    z-index: 10;
+    margin: 0.625rem;
+}
+
+.logo-text-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row; /* Changed to row for side-by-side layout */
+}
+
+.arrow {
+    position: absolute;
+    bottom: 1.25rem;
+    font-size: 1.5rem;
+    color: #fff;
+    animation: blink 1.5s infinite;
+}
+
+.sub-text {
+    font-size: 1.125rem;
+    color: #fff;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.login-text-top-left {
+    position: absolute;
+    font-size: 1rem;
+    color: black;
+    font-weight: bold;
+    z-index: 1000;
+    top: 1rem;
+    left: 1rem;
+}
+
+.logo-text-top-left {
+    position: absolute;
+    top: 3.125rem;
+    left: 3.125rem;
+    font-size: 1.5rem;
+    color: white;
+    font-weight: bold;
+    z-index: 1000;
+}
+
+.content-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #fff;
+    padding: 1.25rem;
+}
+
+.login-container, .login-box {
+    width: 100%;
+    max-width: 25rem;
+    padding: 1.25rem;
+    background-color: #fff;
+    margin: 0 1.25rem;
+}
+
+.toggle {
+    margin-bottom: 1.25rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+}
+
+.toggle-button {
+    background: none;
+    border: none;
+    font-size: 1.125rem;
+    cursor: pointer;
+    color: #888;
+    padding: 0.625rem;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+.toggle-button.active, .toggle-button:hover {
+    color: #000;
+    border-bottom: 0.125rem solid #000;
+}
+
+.login-form {
+    width: 100%;
+}
+
+.input-group {
+    position: relative;
+    margin: 0.625rem 0;
+}
+
+.input-bubble {
+    width: calc(100% - 2.5rem);
+    padding: 0.9375rem;
+    font-size: 1rem;
+    border: 0.0625rem solid transparent;
+    outline: none;
+    background-color: transparent;
+    transition: border-color 0.3s ease, background-color 0.3s ease, width 0.3s ease, padding 0.3s ease;
+    color: #000;
+    border-radius: 1.25rem;
+    margin-right: 1.25rem;
+}
+
+.input-bubble:focus, .input-bubble:hover {
+    border: 0.0625rem solid #ccc;
+    background-color: #f2f2f2;
+    border-radius: 0.3125rem;
+    width: calc(100% - 1.875rem);
+    padding: 1.125rem;
+}
+
+.check-mark {
+    position: absolute;
+    right: 0.625rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+    color: #000;
+}
+
+.input-group.filled .check-mark {
+    display: block;
+}
+
+.login-button {
+    width: 100%;
+    padding: 0.9375rem;
+    font-size: 1rem;
+    color: white;
+    background-color: #333;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 1.25rem 0;
+}
+
+.login-button:hover {
+    background-color: #555;
+}
+
+.social-button {
+    background-color: #333;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    height: 3.125rem;
+    line-height: 3.125rem;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    vertical-align: middle;
+    width: 100%;
+    border-radius: 0.5rem;
+    margin: 0.625rem auto;
+    outline: none;
+    padding: 0;
+    transition: all 0.3s ease;
+    border: 0.0625rem solid #000;
+}
+
+.social-button span {
+    display: none;
+    color: #000;
+    transition: all 0.3s ease;
+}
+
+.social-button:hover {
+    background-image: none !important;
+    background-color: #fff;
+}
+
+.social-button:hover span {
+    display: inline;
+}
+
+#facebook-connect {
+    background-image: url('https://raw.githubusercontent.com/eswarasai/social-login/master/img/facebook-white.svg?sanitize=true');
+    background-size: 1.875rem 1.875rem;
+}
+
+#google-connect {
+    background-image: url('https://raw.githubusercontent.com/eswarasai/social-login/master/img/google-plus-white.png');
+    background-size: 2.1875rem 2.1875rem;
+}
+
+#twitter-connect {
+    background-image: url('https://raw.githubusercontent.com/eswarasai/social-login/master/img/twitter-white.png');
+    background-size: 2.1875rem 2.1875rem;
+}
+
+#linkedin-connect {
+    background-image: url('https://raw.githubusercontent.com/eswarasai/social-login/master/img/linkedin-white.svg?sanitize=true');
+    background-size: 1.5625rem 1.5625rem;
+}
+
+.scrolling-text-container {
+    height: 6.25rem;
+    overflow-y: scroll;
+}
+
+.scrolling-text {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #fff;
+    z-index: 10;
+    margin: 0.625rem;
+}
+
+.scrolling-text-container::-webkit-scrollbar,
+::-webkit-scrollbar,
+::-webkit-scrollbar-track {
+    display: none;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 0.625rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+@media (max-width: 768px) {
+    .content-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .login-container, .login-box {
+        width: 90%;
+        margin: 0 0 1.25rem 0;
+    }
+
+    .logo-text {
+        font-size: 3rem;
+    }
+
+    .logo-text-container {
+        flex-direction: column; /* Stack items in mobile view */
+    }
+
+    .logo-text-top-left {
+        top: 1.5rem;
+        left: 1.5rem;
+        font-size: 1.25rem;
+    }
+
+    .toggle-button {
+        font-size: 1rem;
+    }
+
+    .input-bubble {
+        font-size: 0.9rem;
+    }
+
+    .social-button {
+        height: 2.8125rem;
+        line-height: 2.8125rem;
+    }
+
+    /* Ensure toggle buttons are visible */
+    .toggle {
+        position: sticky;
+        top: 0;
+        background-color: #fff;
+        z-index: 1000;
+        padding: 0.625rem 0;
+        margin-bottom: 0.625rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-text {
+        font-size: 2.5rem;
+    }
+
+    .logo-text-top-left {
+        top: 1rem;
+        left: 1rem;
+        font-size: 1rem;
+    }
+
+    .toggle {
+        flex-direction: row; /* Keep buttons side by side */
+        justify-content: space-around; /* Spread buttons across container */
+        width: 100%;
+    }
+
+    .toggle-button {
+        width: auto;
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+
+    .input-bubble {
+        font-size: 0.8rem;
+    }
+}

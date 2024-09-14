@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Creative Profile</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffeef1;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 30px;
+        }
+        .profile-info h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+        .status {
+            background-color: #e1ffc7;
+            color: #2c7800;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .location {
+            color: #666;
+            margin-top: 5px;
+        }
+        .social-icons {
+            margin-top: 15px;
+        }
+        .social-icons a {
+            margin-right: 10px;
+            color: #333;
+            text-decoration: none;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        .nav-tabs {
+            display: flex;
+            border-bottom: 1px solid #dee2e6;
+            margin-top: 30px;
+        }
+        .nav-tabs a {
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #495057;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-tabs a.active {
+            border-bottom: 2px solid #007bff;
+            color: #007bff;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px 0;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .logout-home {
+            text-align: right;
+            margin-top: 20px;
+        }
+        .logout-home a {
+            color: #6c757d;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #34495e;
+        }
+        input[type="text"], input[type="number"], select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #bdc3c7;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        .orders-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .orders-list li {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logout-home">
+            <a href="{{url_for('logout')}}" id="logoutLink">Logout</a>
+            <a href="{{url_for('index')}}" id="homeLink">Home</a>
+        </div>
+        <div class="profile-header">
+            <img src="{{url_for('static', filename='profile_image_ctock.jpg')}}" alt="Profile Picture" class="profile-pic">
+            <div class="profile-info">
+                <h1 id="profileName"></h1>
+                <div class="status" id="profileLocation">Your Location</div>
+            </div>
+        </div>
+        <div class="nav-tabs">
+            <a href="#" class="active" data-tab="profile">Profile Details</a>
+            <a href="#" data-tab="prompts">Prompts</a>
+            <a href="#" data-tab="orders">Orders</a>
+        </div>
+        <div id="profileTab" class="tab-content active">
+            <h2>Profile Details</h2>
+            <form id="profileForm">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" name="age" required>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender:</label>
+                    <select id="gender" name="gender" required>
+                        <option value="">Select gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location:</label>
+                    <select id="location" name="location" required>
+                        <option value="">Select country</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="description">About Me:</label>
+                    <textarea id="description" name="description" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Profile</button>
+            </form>
+        </div>
+        <div id="promptsTab" class="tab-content">
+            <h2>Custom Prompts</h2>
+            <form id="promptForm">
+                <div class="form-group">
+                    <label for="prompt">What kind of results would you like to see?</label>
+                    <textarea id="prompt" name="prompt" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Prompt</button>
+            </form>
+        </div>
+        <div id="ordersTab" class="tab-content">
+            <h2>Your Orders</h2>
+            <ul id="ordersList" class="orders-list">
+                <!-- Orders will be populated via JavaScript -->
+            </ul>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script>
+        // Populate country dropdown
+        const locationSelect = document.getElementById('location');
+        fetch('https://restcountries.com/v3.1/all')
+            .then(response => response.json())
+            .then(data => {
+                data.sort((a, b) => a.name.common.localeCompare(b.name.common));
+                data.forEach(country => {
+                    const option = document.createElement('option');
+                    option.value = country.name.common;
+                    option.textContent = country.name.common;
+                    locationSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error fetching countries:', error));
+
+        // Tab navigation
+        document.querySelectorAll('.nav-tabs a').forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.nav-tabs a').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById(this.getAttribute('data-tab') + 'Tab').classList.add('active');
+            });
+        });
+
+        // Handle profile form submission
+        document.getElementById('profileForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const userData = Object.fromEntries(formData.entries());
+            
+            axios.post('/save_user_data', userData)
+                .then(response => {
+                    alert('Profile saved successfully!');
+                    updateProfileDisplay(userData);
+                })
+                .catch(error => {
+                    console.error('Error saving profile:', error);
+                    alert('An error occurred while saving your profile. Please try again.');
+                });
+        });
+
+        // Handle prompt form submission
+        document.getElementById('promptForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const promptData = Object.fromEntries(formData.entries());
+            
+            axios.post('/save_prompt', promptData)
+                .then(response => {
+                    alert('Prompt saved successfully!');
+                })
+                .catch(error => {
+                    console.error('Error saving prompt:', error);
+                    alert('An error occurred while saving your prompt. Please try again.');
+                });
+        });
+
+        // Load user data
+        function loadUserData() {
+    axios.get('/get_user_data')
+        .then(response => {
+            const userData = response.data;
+            if (userData) {
+                document.getElementById('name').value = userData.name || '';
+                document.getElementById('age').value = userData.age || '';
+                document.getElementById('gender').value = userData.gender || '';
+                document.getElementById('location').value = userData.location || '';
+                document.getElementById('description').value = userData.description || '';
+                document.getElementById('prompt').value = userData.prompt || '';
+                document.getElementById('profileName').textContent = userData.name || 'Your Name';
+                document.getElementById('profileLocation').textContent = userData.location || 'Your Location'; // Add this line
+                const locationSelect = document.getElementById('location');
+                if (userData.location) {
+                    // First, check if the option exists
+                    let optionExists = Array.from(locationSelect.options).some(option => option.value === userData.location);
+                    
+                    if (!optionExists) {
+                        // If it doesn't exist, add it
+                        let newOption = new Option(userData.location, userData.location);
+                        locationSelect.add(newOption);
+                    }
+                    
+                    // Set the selected value
+                    locationSelect.value = userData.location;
+                }
+                
+                
+                updateProfileDisplay(userData);
+            }
+        })
+        .catch(error => {
+            console.error('Error loading profile:', error);
+        });
+}
+
+        // Update profile display
+        function updateProfileDisplay(userData) {
+            document.getElementById('profileName').textContent = userData.name || 'Your Name';
+            document.getElementById('profileLocation').textContent = userData.location || 'Your Location';
+        }
+
+        // Load orders
+        function loadOrders() {
+            axios.get('/get_orders')
+                .then(response => {
+                    const orders = response.data;
+                    const ordersList = document.getElementById('ordersList');
+                    ordersList.innerHTML = '';
+                    orders.forEach(order => {
+                        const li = document.createElement('li');
+                        li.textContent = `Order ID: ${order.id}, Date: ${order.date}, Status: ${order.status}`;
+                        ordersList.appendChild(li);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading orders:', error);
+                });
+        }
+
+        // Initialize
+        loadUserData();
+        loadOrders();
+
+    </script>
+</body>
+</html>

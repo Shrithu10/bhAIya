@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bhAIya: Your AI Shopping Assistant</title>
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home_page/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home_page/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home_page/chat.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home_page/drawer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home_page/responsive.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home_page/toggle.css') }}">
+</head>
+<body>
+    <div class="chat-container">
+        <header>
+            <button id="new-chat-button" class="ios-button">New Chat</button>
+            
+            <h1>bhAIya</h1>
+            <button id="bundle-button" class="ios-button" style="margin-right: 20px;">Bundle</button>
+            <div class="mode-toggle">
+                <input type="checkbox" id="mode-switch" class="mode-switch-checkbox">
+                <label for="mode-switch" class="mode-switch-label">
+                    <span class="mode-switch-inner"></span>
+                    <span class="mode-switch-switch"></span>
+                </label>
+            </div>
+        </header>
+        <div class="chat-messages" id="chat-messages">
+            <div class="message received">
+                <p>Hello! I'm bhAIya, your AI shopping assistant. How can I help you today?</p>
+            </div>
+        </div>
+        <div class="chat-input">
+        <form id="chat-form" enctype="multipart/form-data">
+            <div class="input-container">
+                <div class="image-preview-container">
+                    <input type="file" id="image-upload" name="image" accept="image/*">
+                    <label for="image-upload" class="upload-btn">📷</label>
+                    <div id="image-preview"></div>
+                </div>
+                <input type="text" id="user-input" name="description" placeholder="What are you looking for today?" autocomplete="off">
+                <button class="submit" type="submit">
+                    <img src="{{ url_for('static', filename='arrow.png') }}" alt="Arrow icon" width="30" height="30">
+                </button>
+            </div>
+        </form>
+        </div>
+        <div class="side-drawer" id="sideDrawer">
+            <div class="drawer-handle" id="drawerHandle">
+                <div class="handle-bar"></div>
+            </div>
+            <div class="drawer-content">
+                <div class="top-buttons">
+                    <a href="{{ url_for('checkout') }}" class="top-button cart-button">CART</a>
+                </div>
+                <div class="cart-preview" id="cartPreview">
+                    <!-- Cart items will be dynamically added here -->
+                </div>
+                <div class="price-slider">
+                    <label for="priceSlider">Set Price Range:</label>
+                    <input type="range" id="priceSlider" min="0" max="100000" step="10" value="500">
+                    <span id="priceValue">₹500</span>
+                </div>
+                <h3>Chat History</h3>
+                <div class="history">
+                    <ul id="chat-history-list" class="conversation-list"></ul>
+                </div>
+                <div class="user-profile">
+                    <div class="user-info" id="userInfo">
+                        <span id="username"></span>
+                        <span class="dropdown-arrow">▼</span>
+                    </div>
+                    <div class="user-menu" id="userMenu">
+                        <a href="{{ url_for('profile') }}" class="menu-item">Profile</a>
+                        <a href="{{ url_for('logout') }}" class="menu-item">Log Out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

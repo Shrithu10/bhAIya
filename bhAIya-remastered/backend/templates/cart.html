@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bhAIya - Checkout</title>
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #ffffff;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: #000000;
+            padding: 20px 0;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            gap: 20px;
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        main {
+            background-color: #000000;
+            padding: 40px 0;
+        }
+        h1 {
+            font-size: 4em;
+            margin-bottom: 40px;
+        }
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .form-section, .cart-section {
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        .form-section:hover, .cart-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            background-color: #2a2a2a;
+            border: none;
+            border-radius: 4px;
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+        input:focus, select:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #ff3e3e;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #2a2a2a;
+            transition: all 0.3s ease;
+        }
+        .cart-item:hover {
+            background-color: #2a2a2a;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .cart-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            margin-right: 15px;
+            border-radius: 4px;
+        }
+        .cart-item-details {
+            flex-grow: 1;
+        }
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+        }
+        .quantity-controls button {
+            background-color: #3a3a3a;
+            color: #ffffff;
+            border: none;
+            width: 30px;
+            height: 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .quantity-controls button:hover {
+            background-color: #ff3e3e;
+        }
+        .quantity-controls span {
+            margin: 0 10px;
+        }
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        #placeOrder {
+            background-color: #ff3e3e;
+            color: #ffffff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        #placeOrder:hover {
+            background-color: #ff6060;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(255,62,62,0.3);
+        }
+        #payment-form {
+            margin-top: 20px;
+        }
+        #payment-message {
+            color: #ff3e3e;
+            margin-top: 10px;
+        }
+
+        .remove-item {
+            background-color: #ff3e3e;
+            color: #ffffff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .remove-item:hover {
+            background-color: #ff6060;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">bhAIya</div>
+            <ul>
+                <li><a href="{{url_for('index')}}">Home</a></li>
+                <li><a href="{{url_for('profile')}}">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <h1>CHECKOUT</h1>
+            <div class="checkout-grid">
+                <div class="form-section">
+                    <h2>CONTACT</h2>
+                    <input type="email" id="email" placeholder="Your email address" required>
+                    <h2>DELIVERY ADDRESS</h2>
+                    <input type="text" id="firstName" placeholder="First Name" required>
+                    <input type="text" id="lastName" placeholder="Last Name" required>
+                    <select id="country" required>
+                        <option value="">Choose country/region</option>
+                        <!-- Countries will be populated via JavaScript -->
+                    </select>
+                    <input type="text" id="address" placeholder="Your address" required>
+                    <input type="text" id="town" placeholder="Town" required>
+                    <input type="text" id="state" placeholder="State" required>
+                    <input type="text" id="postcode" placeholder="Postcode/ZIP" required>
+                </div>
+                <div class="cart-section">
+                    <h2>DETAIL PRODUCT</h2>
+                    <div id="cartItems">
+                        <!-- Cart items will be populated via JavaScript -->
+                    </div>
+                    <div class="cart-total">
+                        <span>TOTAL</span>
+                        <span id="totalAmount"></span>
+                    </div>
+                    <button id="placeOrder">Place Order</button>
+                    <div id="payment-form" style="display: none;">
+                        <div id="payment-element"></div>
+                        <button id="submit-payment">Pay Now</button>
+                        <div id="payment-message"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script>
+        let stripe;
+let elements;
+let emailAddress = '';
+
+document.addEventListener('DOMContentLoaded', function() {
+    fetchCartData();
+    populateCountries();
+    document.getElementById('placeOrder').addEventListener('click', initiateCheckout);
+});
+
+async function fetchCartData() {
+            try {
+                const response = await axios.get('/get_cart_items');
+                const cartItems = response.data;
+                const cartItemsContainer = document.getElementById('cartItems');
+                let total = 0;
+
+                cartItemsContainer.innerHTML = '';
+
+                cartItems.forEach(item => {
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'cart-item';
+                    itemElement.innerHTML = `
+                        <img src="data:image/png;base64,${item.image}" alt="${item.id}">
+                        <div class="cart-item-details">
+                            <h3>${item.id}</h3>
+                            <p class="item-price">₹${(item.price).toFixed(2)}</p>
+                            <p class="item-total">Total: ₹${(item.price * item.quantity).toFixed(2)}</p>
+                        </div>
+                        <div class="quantity-controls">
+                            <button onclick="updateQuantity('${item.id}', ${Math.max(1, item.quantity - 1)})">-</button>
+                            <span>${item.quantity}</span>
+                            <button onclick="updateQuantity('${item.id}', ${item.quantity + 1})">+</button>
+                        </div>
+                        <button class="remove-item" onclick="removeItem('${item.id}')">🗑️</button>
+                    `;
+                    cartItemsContainer.appendChild(itemElement);
+                    total += item.price * item.quantity;
+                });
+
+                document.getElementById('totalAmount').textContent = `₹${total.toFixed(2)}`;
+            } catch (error) {
+                console.error('Error fetching cart data:', error);
+            }
+        }
+
+        async function updateQuantity(productId, newQuantity) {
+            if (newQuantity < 1) {
+                return;
+            }
+            
+            try {
+                await axios.post('/update_cart_quantity', {
+                    product_id: productId,
+                    quantity: newQuantity
+                });
+                fetchCartData();
+            } catch (error) {
+                console.error('Error updating quantity:', error);
+            }
+        }
+
+        async function removeItem(productId) {
+            try {
+                await axios.post('/remove_from_cart', {
+                    product_id: productId
+                });
+                fetchCartData();
+            } catch (error) {
+                console.error('Error removing item from cart:', error);
+            }
+        }
+
+async function populateCountries() {
+    try {
+        const response = await axios.get('https://restcountries.com/v3.1/all');
+        const countries = response.data;
+        const countrySelect = document.getElementById('country');
+
+        countries.sort((a, b) => a.name.common.localeCompare(b.name.common));
+        countries.forEach(country => {
+            const option = document.createElement('option');
+            option.value = country.name.common;
+            option.textContent = country.name.common;
+            countrySelect.appendChild(option);
+        });
+    } catch (error) {
+        console.error('Error fetching countries:', error);
+    }
+}
+
+async function initiateCheckout() {
+    const email = document.getElementById('email').value;
+    const firstName = document.getElementById('firstName').value;
+    const lastName = document.getElementById('lastName').value;
+    const country = document.getElementById('country').value;
+    const address = document.getElementById('address').value;
+    const town = document.getElementById('town').value;
+    const state = document.getElementById('state').value;
+    const postcode = document.getElementById('postcode').value;
+
+    if (!email || !firstName || !lastName || !country || !address || !town || !state || !postcode) {
+        alert('Please fill in all fields before proceeding to payment.');
+        return;
+    }
+
+    emailAddress = email;
+
+    const response = await axios.get('/get_cart_items');
+    const cartItems = response.data;
+    const amount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+
+    try {
+        const { data: { clientSecret } } = await axios.post('/api/create-payment-intent', {
+            amount: amount
+        });
+
+        stripe = Stripe('your_stripe_publishable_key');
+        elements = stripe.elements({ clientSecret });
+
+        const paymentElement = elements.create('payment');
+        paymentElement.mount('#payment-element');
+
+        document.getElementById('payment-form').style.display = 'block';
+        document.getElementById('submit-payment').addEventListener('click', handleSubmit);
+    } catch (error) {
+        console.error('Error initiating checkout:', error);
+    }
+}
+
+async function handleSubmit(e) {
+    e.preventDefault();
+    setLoading(true);
+
+    const { error } = await stripe.confirmPayment({
+        elements,
+        confirmParams: {
+            return_url: `${window.location.origin}/payment-confirmation`,
+            receipt_email: emailAddress,
+        },
+    });
+
+    if (error) {
+        const messageContainer = document.getElementById('payment-message');
+        messageContainer.textContent = error.message;
+    } else {
+        // Payment successful, you can redirect or show a success message
+    }
+
+    setLoading(false);
+}
+
+function setLoading(isLoading) {
+    const submitButton = document.getElementById('submit-payment');
+    submitButton.disabled = isLoading;
+    submitButton.textContent = isLoading ? 'Processing...' : 'Pay Now';
+}
+    </script>
+</body>
+</html>

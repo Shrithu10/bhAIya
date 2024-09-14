@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - bhAIya</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/item.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <a href="{{ url_for('index') }}" class="back-button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 18L9 12L15 6" stroke="#007AFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+            <h1>Product Details</h1>
+        </header>
+        <div class="content-container">
+            <div class="product-details" id="product-details">
+                <!-- Product details will be loaded here -->
+            </div>
+            <div class="chat-container">
+                <div class="chat-messages" id="chat-messages">
+                    <!-- Chat messages will be loaded here -->
+                </div>
+                <form id="chat-form">
+                    <div class="input-container">
+                        <input type="text" id="user-input" name="message" placeholder="Ask about this product..." autocomplete="off">
+                        <button type="submit" id="send-button">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22 2L11 13" stroke="#007AFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="#007AFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <div id="loading-animation" class="loading-animation">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/product.js') }}"></script>
+</body>
+</html>

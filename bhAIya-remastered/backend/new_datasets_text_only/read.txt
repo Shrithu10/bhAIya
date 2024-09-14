@@ -1,0 +1,1 @@
+This folder contains the text categories for multiple databases before the merge. They must be merged with image categories.

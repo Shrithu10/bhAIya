@@ -1,0 +1,26 @@
+/* Header styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f2f2f7;
+    padding: 10px 20px;
+    position: relative;
+}
+
+/* Header title */
+header h1 {
+    flex-grow: 1;
+    text-align: center;
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #000;
+}
+
+/* Back button (if needed) */
+.back-button {
+    font-size: 28px;
+    text-decoration: none;
+    color: #007aff;
+}
