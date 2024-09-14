@@ -68,7 +68,7 @@ https://github.com/user-attachments/assets/4cf604b4-e7b5-4bac-b3a1-034914f95930
 https://github.com/user-attachments/assets/5b191c79-9b39-4b1a-a00a-79ffa247aadf
 
 ## Seller dashboard demo: 
-https://github.com/user-attachments/assets/438693b6-a81c-4b3c-a462-933e56ab8b5f\
+https://github.com/user-attachments/assets/438693b6-a81c-4b3c-a462-933e56ab8b5f
 
 ## Full video: 
 https://github.com/user-attachments/assets/fb3586df-6ab1-45a1-a9ee-d2b1635f0729
