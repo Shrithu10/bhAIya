@@ -1,4 +1,4 @@
-# bhAIya - The Multi Modal Search Enginer
+# bhAIya - The Multi Modal Search Engine
 
 ## Inspiration
 
